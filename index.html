@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather Checker</title>
+  <style>
+    .container {
+      text-align: center;
+      margin-top: 200px;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Enter your location:</h1>
+    <input type="text" id="locationInput">
+    <button onclick="checkWeather()">Check Weather</button>
+  </div>
+
+  <div class="loading" id="loadingScreen">
+    <h2>Searching location...</h2>
+    <div class="loader"></div>
+  </div>
+
+  <script>
+    function checkWeather() {
+      var locationInput = document.getElementById("locationInput").value;
+      var loadingScreen = document.getElementById("loadingScreen");
+
+      // Show loading screen
+      loadingScreen.style.display = "block";
+
+      // Simulate loading process
+      setTimeout(function() {
+        loadingScreen.innerHTML = "<h2>Analyzing the clouds...</h2>";
+        setTimeout(function() {
+          loadingScreen.innerHTML = "<h2>Looking outside your window....</h2>";
+          setTimeout(function() {
+            loadingScreen.innerHTML = "<h2>I don't know, just look outside!</h2>";
+          }, 2000); // 2 seconds delay for final message
+        }, 2000); // 2 seconds delay for "Looking outside" message
+      }, 2000); // 2 seconds delay for "Analyzing clouds" message
+    }
+  </script>
+</body>
+</html>
