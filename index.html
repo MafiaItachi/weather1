@@ -2,7 +2,11 @@
 <html>
 <head>
   <title>Weather Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <style>
+     @media screen and (max-width: 480px) {
+            
+        }
     .container {
       text-align: center;
       margin-top: 200px;
@@ -13,6 +17,21 @@
       text-align: center;
       margin-top: 20px;
     }
+
+    .loading-bar {
+      width: 200px;
+      height: 20px;
+      background-color: #f0f0f0;
+      margin: 10px auto;
+    }
+
+    .loading-bar-progress {
+      height: 100%;
+      background-color: #4CAF50;
+      width: 0%;
+    }
+    
+    
   </style>
 </head>
 <body>
@@ -23,28 +42,38 @@
   </div>
 
   <div class="loading" id="loadingScreen">
-    <h2>Searching location...</h2>
-    <div class="loader"></div>
+    <h2 id="loadingMessage">Searching location...</h2>
+    <div class="loading-bar">
+      <div class="loading-bar-progress"></div>
+    </div>
   </div>
 
   <script>
     function checkWeather() {
       var locationInput = document.getElementById("locationInput").value;
       var loadingScreen = document.getElementById("loadingScreen");
-
-      // Show loading screen
+      var loadingMessage = document.getElementById("loadingMessage");
+      var loadingBarProgress = document.querySelector(".loading-bar-progress");
       loadingScreen.style.display = "block";
 
-      // Simulate loading process
-      setTimeout(function() {
-        loadingScreen.innerHTML = "<h2>Analyzing the clouds...</h2>";
-        setTimeout(function() {
-          loadingScreen.innerHTML = "<h2>Looking outside your window....</h2>";
+      loadingBarProgress.style.width = "0%";
+
+      var progress = 0;
+      var progressInterval = setInterval(function() {
+        progress += 25;
+        loadingBarProgress.style.width = progress + "%";
+
+        if (progress === 25) {
+          loadingMessage.textContent = "Analyzing the clouds...";
+        } else if (progress === 50) {
+          loadingMessage.textContent = "Looking outside your window....";
+        } else if (progress === 100) {
+          clearInterval(progressInterval);
           setTimeout(function() {
             loadingScreen.innerHTML = "<h2>I don't know, just look outside!</h2>";
-          }, 2000); // 2 seconds delay for final message
-        }, 2000); // 2 seconds delay for "Looking outside" message
-      }, 2000); // 2 seconds delay for "Analyzing clouds" message
+          }, 2000); 
+        }
+      }, 1000); 
     }
   </script>
 </body>
