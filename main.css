@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  @apply bg-primary h-screen text-xl text-text;
+}
+.container {
+  @apply flex flex-col items-center  mt-64 h-28 justify-between mx-4;
+}
+
+.loading {
+  @apply hidden text-center mt-5;
+}
+
+.loading-bar {
+  @apply w-80 h-5 bg-white m-3 mx-auto rounded-md;
+}
+
+.loading-bar-progress {
+  @apply h-full bg-lod w-0  rounded-md;
+}
+
+button {
+  @apply bg-secondary p-1 rounded-md px-3;
+}
+
+#locationInput {
+  @apply rounded-md h-8 p-2 w-full;
+}
+#weatherMessage {
+  @apply text-green text-xl font-semibold;
+}
